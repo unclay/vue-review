@@ -1,2 +1,8 @@
-# vue-review
-vue code review 
+# Vue源码学习
+
+通过重构Vue来学习源码
+
+## 重构前置条件
+通过分模块学习来完成前置条件
+
++ 虚拟DOM
