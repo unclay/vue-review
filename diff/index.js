@@ -8,12 +8,6 @@ class Vnode {
   }
 }
 
-function sameVnode (vnode1, vnode2) {
-  return (
-    vnode1.tag === vnode2.tag
-  )
-}
-
 class Vue {
   constructor (options) {
     const vm = this
@@ -64,10 +58,14 @@ class Vue {
       ])
     ]);
   }
+  sameVnode (vnode1, vnode2) {
+    return (
+      vnode1.tag === vnode2.tag
+    )
+  }
 
   updateChildren (oldCh, ch) {
-    console.log(oldCh, ch);
-    if (sameVnode(oldCh[0], ch[0])) {
+    if (this.sameVnode(oldCh[0], ch[0])) {
       this.patchVnode(oldCh[0], ch[0])
     } else {
       this.patch(oldCh[0], ch[0])
@@ -89,7 +87,7 @@ class Vue {
   patch (oldVnode, vnode) {
     const isRealElement = oldVnode.nodeType !== undefined
 
-    if (!isRealElement && sameVnode(oldVnode, vnode)) {
+    if (!isRealElement && this.sameVnode(oldVnode, vnode)) {
       this.patchVnode(oldVnode, vnode);
     } else {
       if (isRealElement) {
